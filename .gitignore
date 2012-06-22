@@ -1,6 +1,6 @@
-# Ignore everything
-/*
-
-# Except for:
-!/src/
-!.gitignore
+target/
+.idea
+*.iml
+.classpath
+.project
+.settings/
