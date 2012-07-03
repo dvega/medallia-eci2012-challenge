@@ -1,0 +1,12 @@
+// Todos los permisos para el codigo en workspace
+grant codeBase "file:${user.home}/Documents/workspace/-" {
+	permission java.security.AllPermission;
+};
+
+// Asi como está es lo mismo que no ponerlo.
+//ningun permiso para testEci.jar
+grant codeBase "file:${user.home}/testEci.jar" {
+//permission java.security.AllPermission;
+};
+
+//ningún permiso para el resto
