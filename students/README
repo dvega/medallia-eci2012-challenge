@@ -1,0 +1,2 @@
+mvn install:install-file -DgroupId=challenge -DartifactId=medallia-eci2012-challenge -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Dfile=./lib/medallia-eci2012-challenge-1.0-SNAPSHOT.jar
+mvn eclipse:clean eclipse:eclipse
