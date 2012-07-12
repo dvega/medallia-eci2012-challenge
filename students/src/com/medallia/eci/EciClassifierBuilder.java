@@ -1,4 +1,4 @@
-package com.eci;
+package com.medallia.eci;
 
 import java.util.Random;
 
@@ -7,7 +7,7 @@ import challenge.lib.ClassifierBuilder;
 import challenge.lib.Sentiment;
 import challenge.lib.TaggedReview;
 
-public class SampleClassifier extends ClassifierBuilder {
+public class EciClassifierBuilder extends ClassifierBuilder {
 	
 
 	/**
