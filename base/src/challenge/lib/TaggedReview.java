@@ -3,10 +3,10 @@ package challenge.lib;
 import java.util.regex.Pattern;
 
 public class TaggedReview {
-	public final String review;
 	public final Sentiment sentiment;
+	public final String review;
 
-	public TaggedReview(String review, Sentiment sentiment) {
+	public TaggedReview(Sentiment sentiment, String review) {
 		this.review = review;
 		this.sentiment = sentiment;
 	}
@@ -17,6 +17,11 @@ public class TaggedReview {
 	 */
 	public String[] getReviewWords() {
 		return splitWords(review);
+	}
+
+	@Override
+	public String toString() {
+		return "TaggedReview{sentiment=" + sentiment + ", review='" + review + "\'}";
 	}
 
 	/**

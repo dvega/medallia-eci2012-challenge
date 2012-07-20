@@ -1,0 +1,11 @@
+grant codeBase "file:${user.home}/Express/EciChallenge/runner/target/classes/production/server/-" {
+	permission java.security.AllPermission;
+};
+
+grant codeBase "file:${user.home}/Express/EciChallenge/runner/target/classes/production/base/-" {
+	permission java.security.AllPermission;
+};
+
+grant codeBase "file:${user.home}/idea-IC-117.117/-" {
+	permission java.security.AllPermission;
+};

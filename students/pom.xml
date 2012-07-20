@@ -22,29 +22,41 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-      		<groupId>challenge</groupId>
+      			<groupId>challenge</groupId>
 			<artifactId>medallia-eci2012-challenge</artifactId>
 			<version>1.0-SNAPSHOT</version>
-			
+    			<scope>system</scope>
+    			<systemPath>${project.basedir}/lib/medallia-eci2012-challenge-1.0-SNAPSHOT.jar</systemPath>
 		</dependency>
 	</dependencies>
-<build>
-    <directory>target</directory>
-    <outputDirectory>target/classes</outputDirectory>
-    <finalName>${artifactId}-${version}</finalName>
-    <testOutputDirectory>target/test-classes</testOutputDirectory>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
-    <resources>
-      <resource>
-        <directory>resources</directory>
-      </resource>
-    </resources>
-    <testResources>
-      <testResource>
-        <directory>test_resources</directory>
-      </testResource>
-    </testResources>
-  </build>
 
+	<build>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+		<finalName>${artifactId}-${version}</finalName>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>test_resources</directory>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
