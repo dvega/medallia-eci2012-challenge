@@ -2,8 +2,17 @@ package challenge.lib;
 
 import java.util.regex.Pattern;
 
-public class TaggedReview {
+/**
+ * Sample labeled review
+ */
+public final class TaggedReview {
+	/**
+	 * The {@link Sentiment} of the review
+	 */
 	public final Sentiment sentiment;
+	/**
+	 * The text of the review
+	 */
 	public final String review;
 
 	public TaggedReview(Sentiment sentiment, String review) {

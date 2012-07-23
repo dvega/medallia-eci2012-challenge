@@ -1,5 +1,8 @@
 package challenge.lib;
 
+/**
+ * A review classifier
+ */
 public interface Classifier {
 	/**
 	 * Classify the given review

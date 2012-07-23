@@ -9,9 +9,12 @@ import challenge.lib.TaggedReview;
  * This class will be loaded by the execution framework via reflection. You must not change the name or the package of
  * this class. This class must implement the {@link ClassifierBuilder} interface.
  * <p>
+ * This class must have a no-argument constructor. If you do not put any constructor, Java will create a no-arg
+ * constructor for you.
+ * <p>
  * With the provided execution framework, the {@link #training(Iterable)} method will be called several times with
  * different subset of the sample set. You should not keep information on static variable about previous sets.
- * This <em>cheating</em> will not be successful because during the competition because the classifier will be called
+ * This <em>cheating</em> will not be successful because during the competition the classifier will be called
  * just once.
  * <p>
  * The code here must not access the filesystem or the network. It will be run with restricted security permission,
