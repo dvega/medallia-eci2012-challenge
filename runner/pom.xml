@@ -61,7 +61,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>challange.run.Main</mainClass>
+                        <mainClass>challenge.run.Main</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>

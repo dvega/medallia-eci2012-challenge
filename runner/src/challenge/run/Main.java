@@ -6,6 +6,8 @@ import challenge.lib.TaggedReview;
 import challenge.lib.utils.Utils;
 
 import java.io.IOException;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -98,7 +100,12 @@ public class Main {
 		return new Iterable<E>() {
 			@Override
 			public Iterator<E> iterator() {
-				return buildNFoldIterator(mark, delegate.iterator());
+				return AccessController.doPrivileged(new PrivilegedAction<Iterator<E>>() {
+					@Override
+					public Iterator<E> run() {
+						return buildNFoldIterator(mark, delegate.iterator());
+					}
+				});
 			}
 		};
 	}

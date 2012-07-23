@@ -1,2 +1,45 @@
-mvn install:install-file -DgroupId=challenge -DartifactId=medallia-eci2012-challenge -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Dfile=./lib/medallia-eci2012-challenge-1.0-SNAPSHOT.jar
-mvn eclipse:clean eclipse:eclipse
+MEDALLIA ECI 2012 CHALLENGE
+===========================
+
+Thanks for joining the challenge. You are required to create a text classifier
+that will label each hotel review in a scale -1 to +1. Negative reviews are
+assigned a negative number and positive reviews a positive number.
+
+A sample dataset is provided for testing, along with a framework to run your
+code.
+
+You will need to implement the class com.medallia.eci.EciClassifierBuilder .
+The template for this class is provided in this package.
+
+You are only required to use Java 7, but it is highly recommended to use any
+Java IDE (Eclipse, Intellij IDEA, Netbeans, etc) and Apache Maven 2.2
+
+You can write your own code or use any open-source library.
+
+You are required to create a single JAR file. If you depend on external
+libraries you must include all required classes and resources into the jar you
+will submit to the competition.
+
+If you use Maven and Eclipse, you can create an Eclipse project by doing
+
+      mvn eclipse:clean eclipse:eclipse
+
+For building your code, you need to do
+
+      mvn package
+
+To run your code, see the run.sh file
+
+During the competition your code will be tested using a different dataset than
+the one provided in this package. You will be given 5000 tagged reviews to
+learn from and after that you will be required to classify about 500000
+reviews.
+
+Your code will run in a sandbox. You must not access the filesystem or the
+network. You have 30 minutes to run, after that time the execution will be
+terminated. You have about 100MB of free memory to use.
+
+The trivial classifier that predicts everything as POSITIVE has a
+Mean-Square-Error of 0.586132 . You are expected at least to improve that mark.
+
+Good luck!
