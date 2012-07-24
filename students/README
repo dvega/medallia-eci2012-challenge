@@ -8,7 +8,7 @@ assigned a negative number and positive reviews a positive number.
 A sample dataset is provided for testing, along with a framework to run your
 code.
 
-You will need to implement the class com.medallia.eci.EciClassifierBuilder .
+You need to implement the class "com.medallia.eci.EciClassifierBuilder".
 The template for this class is provided in this package.
 
 You are only required to use Java 7, but it is highly recommended to use any

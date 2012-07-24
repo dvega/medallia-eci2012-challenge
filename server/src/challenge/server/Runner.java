@@ -18,6 +18,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -51,6 +52,14 @@ public class Runner {
 
 	}
 
+	public static void log(String msg) {
+		svOut.printf("%tF %<tT.%<tL: %s%n", System.currentTimeMillis(), msg);
+	}
+
+	public static void log(String format, String... args) {
+		log(String.format(format, args));
+	}
+
 	private static void executeJar(File jar, File resultsFile) {
 		Thread workThread = new Thread(jarRunnable(jar, resultsFile), "jar-runner");
 		workThread.setDaemon(true);
@@ -60,22 +69,22 @@ public class Runner {
 		waitFinished(workThread, 300000);
 		if (!workThread.isAlive()) return;
 
-		svErr.println("Execution timeout! Killing thread");
+		log("Execution timeout! Killing thread");
 		workThread.interrupt();
 		waitFinished(workThread, 5000);
 		if (!workThread.isAlive()) return;
 
-		svErr.println("trying harder...");
+		log("trying harder...");
 		workThread.stop();
 		waitFinished(workThread, 5000);
 		if (!workThread.isAlive()) return;
 
-		svErr.println("trying harder...");
+		log("trying harder...");
 		workThread.stop(dummyException());
 		waitFinished(workThread, 5000);
 		if (!workThread.isAlive()) return;
 
-		svErr.println("panic! kill failed!!!");
+		log("panic! kill failed!!!");
 	}
 
 	private static Exception dummyException() {
@@ -99,7 +108,7 @@ public class Runner {
 
 				try {
 					writeResults(mse, jar.getName(), resultsFile);
-					svOut.println("Success! MSE=" + mse);
+					log("Success! MSE=" + mse);
 				} catch (IOException e) {
 					e.printStackTrace(svErr);
 				}

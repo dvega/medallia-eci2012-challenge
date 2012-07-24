@@ -73,7 +73,7 @@ public class Main {
 	}
 
 	private void processJar(final File jar) {
-		System.out.println("Executing jar: " + jar);
+		Runner.log("Executing jar: " + jar);
 
 		runJar(jar, resultsFile);
 

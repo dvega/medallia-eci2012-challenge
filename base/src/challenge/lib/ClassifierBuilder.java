@@ -19,5 +19,5 @@ public interface ClassifierBuilder {
 	 * @param data Sample tagged reviews
 	 * @return  A classifier built on the sample data
 	 */
-	Classifier training(Iterable<TaggedReview> data) ;
+	Classifier training(Iterable<TaggedReview> data);
 }
