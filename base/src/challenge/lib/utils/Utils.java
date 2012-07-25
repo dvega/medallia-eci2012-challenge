@@ -89,6 +89,9 @@ public class Utils {
 
 		for (TaggedReview taggedReview : testIterable) {
 			double predicted = classifier.classify(taggedReview.review);
+			// Trunc the range
+			if (predicted > +1) predicted = +1;
+			else if (predicted< -1) predicted = -1;
 			double delta = (taggedReview.sentiment.getValue() - predicted);
 			sumSquareError += delta*delta;
 			num++;
