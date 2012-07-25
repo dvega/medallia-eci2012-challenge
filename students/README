@@ -34,6 +34,8 @@ The generated JAR file will be created in the "target" directory.
 
 To run your code, see the run.sh file
 
+Take a look also at the "javadoc" directory for more information.
+
 During the competition your code will be tested using a different dataset than
 the one provided in this package. You will be given 5000 tagged reviews to
 learn from and after that you will be required to classify about 500000
@@ -43,7 +45,7 @@ Your code will run in a sandbox. You must not access the filesystem or the
 network. You have 30 minutes to run, after that time the execution will be
 terminated. You have about 100MB of free memory to use.
 
-The trivial classifier that predicts everything as POSITIVE has a
-Mean-Square-Error of 0.586132 . You are expected at least to improve that mark.
+The trivial classifier that predicts everything as POSITIVE produces a
+0.586132 Mean-Square-Error. You are expected at least to improve that mark.
 
 Good luck!
