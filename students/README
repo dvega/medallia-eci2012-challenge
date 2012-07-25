@@ -11,7 +11,7 @@ code.
 You need to implement the class "com.medallia.eci.EciClassifierBuilder".
 The template for this class is provided in this package.
 
-You are only required to use Java 7, but it is highly recommended to use any
+The only requirement is to use Java 7, but it is highly recommended to use any
 Java IDE (Eclipse, Intellij IDEA, Netbeans, etc) and Apache Maven 2.2
 
 You can write your own code or use any open-source library.
@@ -27,6 +27,8 @@ If you use Maven and Eclipse, you can create an Eclipse project by doing
 For building your code, you need to do
 
       mvn package
+
+The generated JAR file will be created in the "target" directory.
 
 To run your code, see the run.sh file
 
