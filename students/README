@@ -24,6 +24,8 @@ If you use Maven and Eclipse, you can create an Eclipse project by doing
 
       mvn eclipse:clean eclipse:eclipse
 
+If you use Intellij IDEA, you can just open the pom.xml file
+
 For building your code, you need to do
 
       mvn package
