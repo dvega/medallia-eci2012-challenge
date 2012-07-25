@@ -41,6 +41,12 @@
 			<resource>
 				<directory>resources</directory>
 			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>src/**/*.java</include>
+				</includes>
+			</resource>
 		</resources>
 		<testResources>
 			<testResource>
