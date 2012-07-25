@@ -66,22 +66,23 @@ public class Runner {
 
 		workThread.start();
 
-		waitFinished(workThread, 300000);
+		// Wait 30 minutes
+		waitFinished(workThread, 1_800_000);
 		if (!workThread.isAlive()) return;
 
 		log("Execution timeout! Killing thread");
 		workThread.interrupt();
-		waitFinished(workThread, 5000);
+		waitFinished(workThread, 5_000);
 		if (!workThread.isAlive()) return;
 
 		log("trying harder...");
 		workThread.stop();
-		waitFinished(workThread, 5000);
+		waitFinished(workThread, 5_000);
 		if (!workThread.isAlive()) return;
 
 		log("trying harder...");
 		workThread.stop(dummyException());
-		waitFinished(workThread, 5000);
+		waitFinished(workThread, 5_000);
 		if (!workThread.isAlive()) return;
 
 		log("panic! kill failed!!!");
