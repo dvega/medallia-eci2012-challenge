@@ -4,6 +4,7 @@ import challenge.lib.Classifier;
 import challenge.lib.ClassifierBuilder;
 import challenge.lib.Sentiment;
 import challenge.lib.TaggedReview;
+import challenge.run.Main;
 
 /**
  * This class will be loaded by the execution framework via reflection. You must not change the name or the package of
@@ -47,6 +48,15 @@ public class EciClassifierBuilder implements ClassifierBuilder {
 				return Sentiment.values()[review.length() % 3].getValue();
 			}
 		};
+	}
+
+	/**
+	 * This main method is here for your convenience to ease debugging this class from an IDE.
+	 *
+	 * DO NOT PUT ANY CODE HERE!!! THIS METHOD IS NOT USED DURING THE COMPETITION !!!!
+	 */
+	public static void main(String[] args) throws Exception {
+		Main.main(args);
 	}
 
 }
