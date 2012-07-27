@@ -36,17 +36,11 @@ public class Streams {
 	public static LockFile lockFile(File file) throws IOException {
 		ThreadLocalRandom random = ThreadLocalRandom.current();
 
-		int d = 3;
-		int i = 0;
+		long millis = 100;
 		do {
 			LockFile lck = tryLockFile(file);
 			if (lck != null) return lck;
-			long millis = 100 + random.nextInt(d) * 50;
-			i++;
-			if (i >= d) {
-				d += 2;
-				i = 0;
-			}
+			millis += random.nextInt(100);
 			try {
 				Thread.sleep(millis);
 			} catch (InterruptedException e) {

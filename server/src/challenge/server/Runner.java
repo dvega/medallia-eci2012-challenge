@@ -5,6 +5,13 @@ import challenge.lib.ClassifierBuilder;
 import challenge.lib.TaggedReview;
 import challenge.lib.utils.Utils;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,15 +19,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Properties;
 
 
 public class Runner {
@@ -88,6 +96,36 @@ public class Runner {
 		return new Exception() { };
 	}
 
+	private static void sendMail(String address, Throwable t) throws MessagingException, UnsupportedEncodingException {
+		Properties props = new Properties();
+		props.setProperty("mail.smtp.host", "mail.medallia.com");
+		Session session = Session.getInstance(props);
+		MimeMessage message = new MimeMessage(session);
+		InternetAddress fromAddress = new InternetAddress("ecichallenge@medallia.com", "ECI Challenge");
+		message.setFrom(fromAddress);
+		message.setRecipient(Message.RecipientType.TO, new InternetAddress(address));
+		message.setRecipient(Message.RecipientType.BCC, fromAddress);
+		message.setSubject("[Coding Challenge] Error ejecutando JAR");
+		String stackTrace = makeStackTrace(t);
+		message.setText(stackTrace);
+		Transport.send(message);
+	}
+
+	private static String makeStackTrace(Throwable t) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(bos);
+		t.printStackTrace(printStream);
+		printStream.flush();
+		return new String(bos.toByteArray());
+	}
+
+	private static String getEmailAddress(File jar) {
+		String jarName = jar.getName();
+		int p = jarName.lastIndexOf('-');
+		if (p < 0) return null;
+		return jarName.substring(0, p);
+	}
+
 	private static Runnable jarRunnable(final File jar, final File resultsFile) {
 		return new Runnable() {
 			@Override
@@ -100,6 +138,7 @@ public class Runner {
 					mse = computeMSE(reviews, classifier);
 				} catch (Throwable e) {
 					e.printStackTrace(svErr);
+					sendMail(jar, e);
 					return;
 				}
 
@@ -111,6 +150,19 @@ public class Runner {
 				}
 			}
 		};
+	}
+
+	private static void sendMail(File jar, Throwable e) {
+		String emailAddress = getEmailAddress(jar);
+		if (emailAddress == null) return;
+
+		log("Sending email to " + emailAddress);
+
+		try {
+			sendMail(emailAddress, e);
+		} catch (MessagingException | UnsupportedEncodingException e1) {
+			log("Error sending email: " + e1.getMessage());
+		}
 	}
 
 	private static double computeMSE(Iterable<TaggedReview> reviews, Classifier classifier) {
