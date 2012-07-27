@@ -41,13 +41,25 @@ public class Main {
 	public  void run() throws IOException, InterruptedException {
 		while (true) {
 			File[] jars = incomingDir.listFiles(jarFilter());
-			for (File jar : jars) {
-				processJar(jar);
-			}
-			
-			if (jars.length == 0)
+			if (!processAnyJAR(jars))
 				Thread.sleep(5000);
 		}
+	}
+
+	private boolean processAnyJAR(File[] jars) throws IOException {
+		for (File jar : jars) {
+			Streams.LockFile lockFile = Streams.tryLockFile(jar);
+			if (lockFile == null) continue;
+			try {
+				if (jar.exists()) {
+				    processJar(jar);
+					return true;
+				}
+			} finally {
+				lockFile.close();
+			}
+		}
+		return false;
 	}
 
 	private static void runJar(File jar, File resultsFile) {

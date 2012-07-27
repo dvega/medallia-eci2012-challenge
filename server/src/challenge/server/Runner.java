@@ -56,10 +56,6 @@ public class Runner {
 		svOut.printf("%tF %<tT.%<tL: %s%n", System.currentTimeMillis(), msg);
 	}
 
-	public static void log(String format, String... args) {
-		log(String.format(format, args));
-	}
-
 	private static void executeJar(File jar, File resultsFile) {
 		Thread workThread = new Thread(jarRunnable(jar, resultsFile), "jar-runner");
 		workThread.setDaemon(true);
@@ -138,7 +134,8 @@ public class Runner {
 	}
 
 	private static void writeResults(double mse, String jarName, File resultsFile) throws IOException {
-		try (OutputStream stream = new FileOutputStream(resultsFile, true)) {
+		try (Streams.LockFile lockFile = Streams.lockFile(resultsFile);
+				OutputStream stream = new FileOutputStream(resultsFile, true)) {
 			Writer writer = new OutputStreamWriter(stream);
 			String line = String.format("%f %s%n", mse, jarName);
 			writer.write(line);
