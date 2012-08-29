@@ -122,8 +122,9 @@ public class Runner {
 	private static String getEmailAddress(File jar) {
 		String jarName = jar.getName();
 		int p = jarName.lastIndexOf('-');
-		if (p < 0) return null;
-		return jarName.substring(0, p);
+		int c = jarName.indexOf('-');
+		if (c < 0 || p < 0) return null;
+		return jarName.substring(c + 1, p);
 	}
 
 	private static Runnable jarRunnable(final File jar, final File resultsFile) {
