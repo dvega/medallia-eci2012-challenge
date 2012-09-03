@@ -105,7 +105,7 @@ public class Runner {
 		message.setFrom(fromAddress);
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(address));
 		message.setRecipient(Message.RecipientType.BCC, fromAddress);
-		message.setSubject("[Coding Challenge] Error ejecutando JAR");
+		message.setSubject("[Coding Challenge] Error executing JAR");
 		String stackTrace = makeStackTrace(t);
 		message.setText(stackTrace);
 		Transport.send(message);
